@@ -1,68 +1,57 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+#### view test
 
-## Available Scripts
+github: website：https://github.com/Eracpihs/programming-test/blob/master/frontend.md
 
-In the project directory, you can run:
+#### 运行
 
-### `yarn start`
+###### 安装依赖： yarn install / npm install
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+###### 启动应用： npm start
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+##### Objective
 
-### `yarn test`
+- Write a web app to manage a To-Do List
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+##### Requirements
 
-### `yarn build`
+- Allows a user to manage a To-Do list (CRUD)
+- View To-Do items
+- Add a new To-Do item to the list
+- Edit a To-Do item
+- Remove a To-Do from the list
+- Persist data to storage
+- When page is refreshed, list will not be reset
+- Persist using either HTML5 web storage, or using Node.js backend
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+##### Specifications
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+- Write using React and JavaScript
+- Design using Ant Design UI components
+- Follow proper code styles (e.g. Airbnb Javascript style guide)
+- Use static type checking, e.g. Typescript, Flow, Proptypes
+- Write unit tests, e.g, Jest, react-testing-library
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+##### Submission Guidelines
 
-### `yarn eject`
+- Application should be runnable using npm start command
+- Please host code in a public repository on GitHub
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### 出现的问题
+1. useState更新后不能够获取值，导致持久化数据的时候没有将最后条信息添加到localStorage中
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```js
+  // HOOKS 中useState的问题：更新后不能够立即获取值  
+  // 原因：useState必须要执行完react整个生命周期才会获取最新值
+  // 解决方式，保留更新后的值或者使用useRef等方式代替
+  setData(data => data.concat([newTarget]))
+  // 此处打印的data是在未添加newTarget的值
+  console.log('function data:', data) 
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+// ---------------------------------------------------------------------
+  const newData = data.concat(newTarget)
+  setData(newData)
+  // 此处打印的是连接了newTarget的值
+  console.log('data', data); 
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+  // 发现antd 的modal对话框在弹出的时候，因为去除了滚动条，所以页面会有“闪烁的现象”
+```
