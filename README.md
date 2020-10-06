@@ -4,6 +4,8 @@ github: website：https://github.com/Eracpihs/programming-test/blob/master/front
 
 #### 运行
 
+#### git clone git@github.com:Kehao33/ToDoList__React-localStorage.git
+
 ###### 安装依赖： yarn install / npm install
 
 ###### 启动应用： npm start
