@@ -1,7 +1,3 @@
-#### view test
-
-github: website：https://github.com/Eracpihs/programming-test/blob/master/frontend.md
-
 #### 运行
 
 #### git clone git@github.com:Kehao33/ToDoList__React-localStorage.git

@@ -1,5 +1,6 @@
 import { Input, Modal, Form, Switch } from 'antd'
 import React, { useEffect } from 'react'
+import PropTypes from 'prop-types'
 
 function TaskModal(props) {
   const [form] = Form.useForm()
@@ -71,7 +72,6 @@ function TaskModal(props) {
         >
           <Input disabled />
         </Form.Item>
-
         <Form.Item label="完成状态" name="isOk" valuePropName="checked">
           <Switch checkedChildren="完成" unCheckedChildren="未完成" />
         </Form.Item>
@@ -84,6 +84,14 @@ function TaskModal(props) {
       </Form>
     </Modal>
   )
+}
+
+TaskModal.protoTypes = {
+  editItem: PropTypes,
+  visible: PropTypes.bool.isRequre,
+  handleFormData: PropTypes.func,
+  handleVisible: PropTypes.func,
+  handleCancel: PropTypes.func,
 }
 
 export default TaskModal

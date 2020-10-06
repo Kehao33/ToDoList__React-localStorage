@@ -24,8 +24,6 @@ function App() {
     // 获取到data中的最大ID
     const maxId = Math.max(...storeData.map((item) => item.id))
     if (storeData[0]?.taskName) setData(storeData)
-    else setData([])
-    console.log('maxId:', maxId)
     setMaxId(maxId)
   }, [])
 
@@ -42,21 +40,22 @@ function App() {
       }
     }
 
+    const storeData = getDataFromLocalStorage(PERSISDATA_KEY)
+    let id = parseInt(1 + maxId)
+
     const newTarget = {
+      id,
       taskName: target,
       taskTime: formatTimeStamp(new Date().valueOf()),
-      id: maxId + 1,
       isOk: false, // 标记目标是否完成
       taskInfo: '', // 任务说明
     }
     // 得到localStorage的所有数据后，添加当前项，在保存到localStorage中
-    setMaxId((maxId) => maxId + 1)
-    console.log('maxId:', maxId)
+    setMaxId((maxId) => 1 + maxId)
     const newData = data.concat(newTarget)
     setData(newData)
     // 将data进行持久化
     setDataToLocalStorage(PERSISDATA_KEY, newData)
-    const storeData = getDataFromLocalStorage(PERSISDATA_KEY)
     setInputData('')
   }
 
@@ -73,7 +72,6 @@ function App() {
         setDataToLocalStorage(PERSISDATA_KEY, newData)
       },
       onCancel() {
-        console.log('Cancel')
         return false
       },
     })
@@ -81,7 +79,7 @@ function App() {
 
   const removeDoneTask = () => {
     const unDoneTask = data.filter((item) => item.isOk)
-    if(!data.length){
+    if (!data.length) {
       message.warning('还没有任务，去建立新任务吧!')
       return
     }
@@ -145,7 +143,6 @@ function App() {
       return item
     })
     // 持久化数据，跟新视图
-    console.log('newData', newData)
     setData(newData)
     setDataToLocalStorage(PERSISDATA_KEY, newData)
     // setVisible(false)
