@@ -9,7 +9,7 @@ import TaskModal from './components/taskModal/taskModal'
 const { Search } = Input
 const { confirm } = Modal
 
-function App() {
+const App = () => {
   const PERSISDATA_KEY = 'PERSISDATA_KEY' // 持久化数据key
   const [data, setData] = useState([])
   const [inputData, setInputData] = useState('')

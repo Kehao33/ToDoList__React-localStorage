@@ -2,7 +2,7 @@ import { Input, Modal, Form, Switch } from 'antd'
 import React, { useEffect } from 'react'
 import PropTypes from 'prop-types'
 
-function TaskModal(props) {
+const TaskModal = (props) => {
   const [form] = Form.useForm()
   const {
     editItem,
