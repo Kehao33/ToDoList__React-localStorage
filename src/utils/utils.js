@@ -1,5 +1,5 @@
 // format timestamp
-function formatTimeStamp(number) {
+const formatTimeStamp = (number) => {
   if (isNaN(number)) {
     throw new TypeError(`{number} is not a timestamp!`)
   }
@@ -24,6 +24,20 @@ function formatTimeStamp(number) {
   return `${year}年/${month}月/${dat}日 ${week} ${hour}:${min}:${sec}`
 }
 
+// 根据key从本地get Data
+const getDataFromLocalStorage = (key) => {
+  return JSON.parse(localStorage.getItem(key)) || [{
+    id: 0
+  }]
+}
+// 根据key将data设置到本地
+const setDataToLocalStorage = (key, data) => {
+  localStorage.setItem(key, JSON.stringify(data))
+  return true
+}
+
 export {
-  formatTimeStamp
+  formatTimeStamp,
+  getDataFromLocalStorage,
+  setDataToLocalStorage
 }

@@ -31,16 +31,17 @@ const TaskModal = (props) => {
   // console.log('editItem',props)
   useEffect(() => {
     form.setFieldsValue({
-      id: editItem.id,
-      taskName: editItem.taskName,
-      taskTime: editItem.taskTime,
-      isOk: editItem.isOk,
-      taskInfo: editItem.taskInfo || '暂时没有任务说明哦',
+      id: editItem?.id,
+      taskName: editItem?.taskName,
+      taskTime: editItem?.taskTime,
+      isOk: editItem?.isOk,
+      taskInfo: editItem?.taskInfo || '暂时没有任务说明哦',
     })
   }, [editItem, form, visible])
 
   return (
     <Modal
+      centered={true}
       getContainer={false}
       title="任务详情 / 编辑任务  "
       visible={visible}
@@ -87,11 +88,11 @@ const TaskModal = (props) => {
 }
 
 TaskModal.protoTypes = {
-  editItem: PropTypes,
-  visible: PropTypes.bool.isRequre,
-  handleFormData: PropTypes.func,
-  handleVisible: PropTypes.func,
-  handleCancel: PropTypes.func,
+  editItem: PropTypes.object.isRequired,
+  visible: PropTypes.bool.isRequired,
+  handleFormData: PropTypes.func.isRequired,
+  handleVisible: PropTypes.func.isRequired,
+  handleCancel: PropTypes.func.isRequired,
 }
 
 export default TaskModal

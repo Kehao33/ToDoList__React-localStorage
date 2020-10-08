@@ -1,6 +1,6 @@
 #### 运行
 
-#### git clone git@github.com:Kehao33/ToDoList__React-localStorage.git
+#### git clone git@github.com:Kehao33/ToDoList\_\_React-localStorage.git
 
 ###### 安装依赖： yarn install / npm install
 
@@ -34,22 +34,26 @@
 - Application should be runnable using npm start command
 - Please host code in a public repository on GitHub
 
-### 出现的问题
-1. useState更新后不能够获取值，导致持久化数据的时候没有将最后条信息添加到localStorage中
+### DEMO 总结
+
+1. useState 更新后不能够获取值，导致持久化数据的时候没有将最后条信息添加到 localStorage 中
+
+2. antd 组件是封装的，所以导致获取元素上的属性的有问题
+
+3. 不要遗忘掉了"原生"的力量
+4. 元素上的属性类型是string类型的，==，=== 使用的时候应该think think
 
 ```js
-  // HOOKS 中useState的问题：更新后不能够立即获取值  
-  // 原因：useState必须要执行完react整个生命周期才会获取最新值
-  // 解决方式，保留更新后的值或者使用useRef等方式代替
-  setData(data => data.concat([newTarget]))
-  // 此处打印的data是在未添加newTarget的值
-  console.log('function data:', data) 
+// HOOKS 中useState的问题：更新后不能够立即获取值
+// 原因：useState必须要执行完react整个生命周期才会获取最新值
+// 解决方式，保留更新后的值或者使用useRef等方式代替
+setData((data) => data.concat([newTarget]))
+// 此处打印的data是在未添加newTarget的值
+console.log('function data:', data)
 
 // ---------------------------------------------------------------------
-  const newData = data.concat(newTarget)
-  setData(newData)
-  // 此处打印的是连接了newTarget的值
-  console.log('data', data); 
-
-  // 发现antd 的modal对话框在弹出的时候，因为去除了滚动条，所以页面会有“闪烁的现象”
+const newData = data.concat(newTarget)
+setData(newData)
+// 此处打印的是连接了newTarget的值
+console.log('data', data)
 ```

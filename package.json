@@ -1,7 +1,6 @@
 {
   "name": "to-do-list",
   "version": "0.1.0",
-  "private": true,
   "dependencies": {
     "@craco/craco": "^5.7.0",
     "@testing-library/jest-dom": "^4.2.4",
